@@ -167,7 +167,7 @@ export async function scim_GET_ResourceTypes() {
 // =================================================
 // SCIM GET Users
 // =================================================
-export async function scim_GET_Users() {
+export async function scim_GET_Users(): Promise<any[]> {
 
     const axios = require('axios');
     const qs = require('querystring');
@@ -198,14 +198,14 @@ export async function scim_GET_Users() {
             const configGP2 = {
                 method: 'get',
                 rejectUnauthorized: false,
-                url: globalThis.__INSTANCE + '/Users'+'?startIndex='+currentIndex+'&itemsPerPage='+itemsPerPage',
+                url: globalThis.__INSTANCE + '/Users?startIndex='+currentIndex+'&itemsPerPage='+itemsPerPage,
                 headers: {
                     'Accept': 'application/json',
                     'Authorization': 'Bearer '+globalThis.__ACCESS_TOKEN
                 }
             }
     
-            let res2 = await await axios(configGP2)
+            let res2 = await axios(configGP2)
             accounts = accounts.concat(res2.data.Resources)
         }
     }
